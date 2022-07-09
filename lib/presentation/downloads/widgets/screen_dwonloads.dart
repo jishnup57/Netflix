@@ -1,6 +1,8 @@
 import 'dart:math';
 
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:netflixapp/application/downloads/downloads_bloc.dart';
 import 'package:netflixapp/core/colors/colors.dart';
 import 'package:netflixapp/core/constants.dart';
 import 'package:netflixapp/presentation/widgets/app_bar_widget.dart';
@@ -14,7 +16,7 @@ class ScreenDownloads extends StatelessWidget {
   ];
   @override
   Widget build(BuildContext context) {
-   // final Size size = MediaQuery.of(context).size;
+    // final Size size = MediaQuery.of(context).size;
     return Scaffold(
         appBar: const PreferredSize(
             preferredSize: Size.fromHeight(50),
@@ -22,9 +24,11 @@ class ScreenDownloads extends StatelessWidget {
               title: 'Downloads',
             )),
         body: ListView.separated(
-          padding:const EdgeInsets.all(10),
-          itemBuilder: (ctx,index)=>_widgetList[index],
-          separatorBuilder: (ctx,index)=>const SizedBox(height: 25,),
+          padding: const EdgeInsets.all(10),
+          itemBuilder: (ctx, index) => _widgetList[index],
+          separatorBuilder: (ctx, index) => const SizedBox(
+            height: 25,
+          ),
           itemCount: _widgetList.length,
         ));
   }
@@ -33,13 +37,18 @@ class ScreenDownloads extends StatelessWidget {
 // ignore: must_be_immutable
 class Section2 extends StatelessWidget {
   Section2({Key? key}) : super(key: key);
-  List imageurl = [
-    'https://www.themoviedb.org/t/p/w220_and_h330_face/qJRB789ceLryrLvOKrZqLKr2CGf.jpg',
-    'https://www.themoviedb.org/t/p/w220_and_h330_face/74kkM7E5IymHl7ZS4XugP6YT3zU.jpg',
-    'https://www.themoviedb.org/t/p/w220_and_h330_face/rJHC1RUORuUhtfNb4Npclx0xnOf.jpg'
-  ];
+  // List imageurl = [
+  //   'https://www.themoviedb.org/t/p/w220_and_h330_face/qJRB789ceLryrLvOKrZqLKr2CGf.jpg',
+  //   'https://www.themoviedb.org/t/p/w220_and_h330_face/74kkM7E5IymHl7ZS4XugP6YT3zU.jpg',
+  //   'https://www.themoviedb.org/t/p/w220_and_h330_face/rJHC1RUORuUhtfNb4Npclx0xnOf.jpg'
+  // ];
   @override
   Widget build(BuildContext context) {
+    //  WidgetsBinding.instance!.addPostFrameCallback((_) {
+    //    BlocProvider.of<DownloadsBloc>(context).add(const DownloadsEvent.getDownloadsImage());
+    //  });
+    BlocProvider.of<DownloadsBloc>(context)
+        .add(const DownloadsEvent.getDownloadsImage());
     final Size size = MediaQuery.of(context).size;
     return Column(
       children: [
@@ -55,38 +64,42 @@ class Section2 extends StatelessWidget {
           textAlign: TextAlign.center,
           style: TextStyle(fontSize: 16, color: Colors.grey),
         ),
-        SizedBox(
-          width: size.width,
-          height: size.height*0.5,
-          child: Stack(alignment: Alignment.center, children: [
-            Center(
-              child: CircleAvatar(
-                radius: size.width * 0.4,
-                backgroundColor: Colors.grey.withOpacity(.5),
-              ),
-            ),
-            DownloadsImageWidget(
-              imageurl: imageurl[0],
-              margin:const EdgeInsets.only(left: 170,top:50 ),
-              angle: 25,
-              width: size.width * 0.35,
-              height: size.width * 0.55,
-            ),
-            DownloadsImageWidget(
-              imageurl: imageurl[1],
-              margin:const EdgeInsets.only(right: 170,top: 50),
-              angle: -25,
-              width: size.width * 0.35,
-              height: size.width * 0.55,
-            ),
-            DownloadsImageWidget(
-              imageurl: imageurl[2],
-              margin:const EdgeInsets.only(bottom: 25,top: 50),
-              width: size.width * 0.4,
-              height: size.width * 0.65,
-              radius: 8,
-            ),
-          ]),
+        BlocBuilder<DownloadsBloc, DownloadsState>(
+          builder: (context, state) {
+            return SizedBox(
+              width: size.width,
+              height: size.height * 0.5,
+              child: Stack(alignment: Alignment.center, children: [
+                Center(
+                  child: CircleAvatar(
+                    radius: size.width * 0.4,
+                    backgroundColor: Colors.grey.withOpacity(.5),
+                  ),
+                ),
+                DownloadsImageWidget(
+                  imageurl:'https://image.tmdb.org/t/p/w500${state.downloads?[0].posterPath}',
+                  margin: const EdgeInsets.only(left: 170, top: 50),
+                  angle: 25,
+                  width: size.width * 0.35,
+                  height: size.width * 0.55,
+                ),
+                DownloadsImageWidget(
+                  imageurl: 'https://image.tmdb.org/t/p/w500${state.downloads?[1].posterPath}',
+                  margin: const EdgeInsets.only(right: 170, top: 50),
+                  angle: -25,
+                  width: size.width * 0.35,
+                  height: size.width * 0.55,
+                ),
+                DownloadsImageWidget(
+                  imageurl: 'https://image.tmdb.org/t/p/w500${state.downloads?[2].posterPath}',
+                  margin: const EdgeInsets.only(bottom: 25, top: 50),
+                  width: size.width * 0.4,
+                  height: size.width * 0.65,
+                  radius: 8,
+                ),
+              ]),
+            );
+          },
         ),
       ],
     );
@@ -184,7 +197,7 @@ class DownloadsImageWidget extends StatelessWidget {
       child: Transform.rotate(
         angle: angle * pi / 180,
         child: Container(
-         // margin: margin,
+          // margin: margin,
           width: width,
           height: height,
           decoration: BoxDecoration(
