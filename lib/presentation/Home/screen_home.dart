@@ -1,10 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:netflixapp/core/colors/colors.dart';
 import 'package:netflixapp/core/constants.dart';
 import 'package:netflixapp/presentation/Home/widget/background_card.dart';
 import 'package:netflixapp/presentation/Home/widget/number_title_card.dart';
 import 'package:netflixapp/presentation/widgets/main_title_card.dart';
+
+import '../../application/downloads/downloads_bloc.dart';
 
 ValueNotifier<bool> scrollNotifier = ValueNotifier(true);
 
@@ -13,6 +16,7 @@ class ScreenHome extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+     BlocProvider.of<DownloadsBloc>(context).add(const DownloadsEvent.getDownloadsImage());
     return Scaffold(
         body: ValueListenableBuilder(
       valueListenable: scrollNotifier,

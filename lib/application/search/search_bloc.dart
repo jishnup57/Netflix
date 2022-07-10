@@ -1,3 +1,5 @@
+import 'dart:developer';
+
 import 'package:bloc/bloc.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:injectable/injectable.dart';
@@ -31,6 +33,12 @@ idle state
         ));
         return;
       }
+      emit(const SearchState(
+          searchResultList: [],
+          idleList: [],
+          isLoading: true,
+          isError: false,
+        ));
 
       //get trending
       final _result = await _downloadService.getDownloadsImages();
@@ -58,10 +66,38 @@ idle state
 /*
 search result state
 */
-    on<SearchMovie>((event, emit) {
+    on<SearchMovie>((event, emit) async {
       // call search movie api
-      _searchService.searchMovies(movieQuery: event.movieQuery);
+      log('Searching for ${event.movieQuery}');
+      emit(const SearchState(
+        searchResultList: [],
+        idleList: [],
+        isLoading: true,
+        isError: false,
+      ));
+      final _result =
+          await _searchService.searchMovies(movieQuery: event.movieQuery);
+      final _state = _result.fold(
+        (MainFailure f) {
+           return const SearchState(
+            searchResultList: [],
+            idleList: [],
+            isLoading: false,
+            isError: true,
+          );
+        },
+        (SearchResp r) {
+          return const SearchState(
+             searchResultList: [],
+            // searchResultList: r.results,
+            idleList: [],
+            isLoading: false,
+            isError: false,
+          );
+        },
+      );
       // show to ui
+      emit(_state);
     });
   }
 }

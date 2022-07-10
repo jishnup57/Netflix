@@ -25,6 +25,7 @@ class DownloadsRepository implements IDownloadsRepo {
         // for (final raw in response.data) {
         //   downloadsList.add(Downloads.fromJson(raw as Map<String, dynamic>));
         // }
+        print('datas are.....................');
         print(downloadsList);
         return  Right(downloadsList);
       }else{
