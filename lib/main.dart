@@ -7,6 +7,8 @@ import 'package:netflixapp/core/colors/colors.dart';
 import 'package:netflixapp/domain/core/di/injectable.dart';
 import 'package:netflixapp/presentation/main%20page/widgets/screen_mainpage.dart';
 
+import 'application/fast_laugh/fast_laugh_bloc.dart';
+
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await configureInjection();
@@ -22,6 +24,7 @@ class MyApp extends StatelessWidget {
       providers: [
         BlocProvider(create: (ctx) => getIt<DownloadsBloc>()),
         BlocProvider(create: (ctx) => getIt<SearchBloc>()),
+        BlocProvider(create: (ctx) => getIt<FastLaughBloc>()),
       ],
       child: MaterialApp(
         debugShowCheckedModeBanner: false,
