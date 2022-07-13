@@ -8,7 +8,7 @@ class SearchResp {
   @JsonKey(name: 'results')
   List<SearchResultData>? results;
   SearchResp({
-    this.results =const[],
+    this.results = const [],
   });
 
   factory SearchResp.fromJson(Map<String, dynamic> json) {
@@ -20,21 +20,20 @@ class SearchResp {
 
 @JsonSerializable()
 class SearchResultData {
-
   @JsonKey(name: 'original_title')
   String? originalTitle;
 
   @JsonKey(name: 'poster_path')
   String? posterPath;
 
-  String get posterImageUrl=>'$imageAppendUrl$posterPath';
+  String get posterImageUrl => '$imageAppendUrl$posterPath';
 
   SearchResultData({
     this.originalTitle,
     this.posterPath,
   });
 
-  factory  SearchResultData.fromJson(Map<String, dynamic> json) {
+  factory SearchResultData.fromJson(Map<String, dynamic> json) {
     return _$SearchResultDataFromJson(json);
   }
 

@@ -5,8 +5,20 @@ import 'package:netflixapp/presentation/Home/widget/custom_button_widget.dart';
 import 'package:netflixapp/presentation/widgets/video_widget.dart';
 
 class ComingSoon extends StatelessWidget {
+  final String id;
+  final String month;
+  final String day;
+  final String posterPath;
+  final String movieName;
+  final String description;
   const ComingSoon({
     Key? key,
+    required this.id,
+    required this.month,
+    required this.day,
+    required this.posterPath,
+    required this.movieName,
+    required this.description,
   }) : super(key: key);
 
   @override
@@ -19,11 +31,12 @@ class ComingSoon extends StatelessWidget {
           height: 450,
           child: Column(
             mainAxisAlignment: MainAxisAlignment.start,
-            children: const [
-              Text("FEB", style: TextStyle(fontSize: 16, color: kGreyColor)),
+            children: [
+              Text(month,
+                  style: const TextStyle(fontSize: 16, color: kGreyColor)),
               Text(
-                "11",
-                style: TextStyle(
+                day,
+                style: const TextStyle(
                     fontSize: 30,
                     fontWeight: FontWeight.bold,
                     letterSpacing: 4),
@@ -37,23 +50,29 @@ class ComingSoon extends StatelessWidget {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-            const  VideoWidget(),
+              VideoWidget(url: posterPath,),
               Row(
                 //  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: const [
-                  Text(
-                    "MS.Marvel",
-                    style: TextStyle(fontSize: 35, fontWeight: FontWeight.bold),
+                children: [
+                  Expanded(
+                    child: Text(
+                      movieName,
+                      maxLines: 1,
+                      overflow: TextOverflow.clip,
+                      style: const TextStyle(
+                          fontSize: 18, fontWeight: FontWeight.bold),
+                      
+                    ),
                   ),
-                  Spacer(),
-                  CustomButtonWidget(
+                 
+                  const CustomButtonWidget(
                     icon: Icons.notification_add,
                     title: "Remind me",
                     iconSize: 20,
                     textSize: 16,
                   ),
                   kWidth,
-                  CustomButtonWidget(
+                  const CustomButtonWidget(
                     icon: Icons.info_outline,
                     title: "Info",
                     iconSize: 20,
@@ -62,20 +81,21 @@ class ComingSoon extends StatelessWidget {
                   kWidth
                 ],
               ),
-              const Text("Coming on Friday"),
+              Text("Coming on $day $month"),
               kHeight,
-              const Text(
-                "MS.Marvel",
-                style: TextStyle(
+               Text(
+                movieName,
+                style:const TextStyle(
                   fontSize: 18,
                   color: kGreyColor,
                   fontWeight: FontWeight.bold,
                 ),
               ),
               kHeight,
-              const Text(
-                "There are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration in some form, by injected humour,",
-                style: TextStyle(
+               Text(
+                description,
+                maxLines: 4,
+                style:const TextStyle(
                   fontSize: 16,
                   color: kGreyColor,
                   wordSpacing: 1,
@@ -88,4 +108,3 @@ class ComingSoon extends StatelessWidget {
     );
   }
 }
-

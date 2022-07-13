@@ -11,6 +11,5 @@ class FastLaughState with _$FastLaughState {
         videoList: [],
         isLoading: true,
         isError: false,
-       
       );
 }

@@ -8,7 +8,7 @@ import 'package:netflixapp/presentation/search/widget/search_result.dart';
 
 class ScreenSearch extends StatelessWidget {
   ScreenSearch({Key? key}) : super(key: key);
-  final _debouncer = Debouncer(milliseconds: 1*1000);
+  final _debouncer = Debouncer(milliseconds: 1 * 1000);
   @override
   Widget build(BuildContext context) {
     WidgetsBinding.instance!.addPostFrameCallback((_) {
@@ -37,18 +37,16 @@ class ScreenSearch extends StatelessWidget {
                     return;
                   }
                   _debouncer.run(() {
-                     BlocProvider.of<SearchBloc>(context)
-                      .add(SearchMovie(movieQuery: value));
+                    BlocProvider.of<SearchBloc>(context)
+                        .add(SearchMovie(movieQuery: value));
                   });
-                 
                 },
               ),
-               Expanded(child: BlocBuilder<SearchBloc, SearchState>(
+              Expanded(child: BlocBuilder<SearchBloc, SearchState>(
                 builder: (context, state) {
-                  if(state.searchResultList.isEmpty){
-                  return const SearchIdleWidget();
-
-                  }else{
+                  if (state.searchResultList!.isEmpty) {
+                    return const SearchIdleWidget();
+                  } else {
                     return const SearchResultWidget();
                   }
                 },

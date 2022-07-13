@@ -4,42 +4,46 @@ import 'package:netflixapp/core/constants.dart';
 import 'package:netflixapp/presentation/Home/widget/custom_button_widget.dart';
 
 class BackgroundCard extends StatelessWidget {
-  const BackgroundCard({ Key? key }) : super(key: key);
+  const BackgroundCard({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    return  Stack(
-            children: [
-              Container(
-                height: 600,
-                width: double.infinity,
-                decoration: const BoxDecoration(
-                    image: DecorationImage(
-                        image: NetworkImage(
-                          kMainImage,
-                        ),
-                        fit: BoxFit.cover)),
-              ),
-              Positioned(
-                bottom: 0,
-                left: 0,
-                right: 0,
-                child: Padding(
-                  padding: const EdgeInsets.only(bottom:10.0),
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                    children: [
-                     const CustomButtonWidget(icon: Icons.add,
-                      title: "My List" ,),
-                      _playButton(),
-                    const  CustomButtonWidget(icon: Icons.info_outline, title: "Info")
-                    ],
+    return Stack(
+      children: [
+        Container(
+          height: 600,
+          width: double.infinity,
+          decoration: const BoxDecoration(
+              image: DecorationImage(
+                  image: NetworkImage(
+                    kMainImage,
                   ),
+                  fit: BoxFit.cover)),
+        ),
+        Positioned(
+          bottom: 0,
+          left: 0,
+          right: 0,
+          child: Padding(
+            padding: const EdgeInsets.only(bottom: 10.0),
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+              children: [
+                const CustomButtonWidget(
+                  icon: Icons.add,
+                  title: "My List",
                 ),
-              )
-            ],
-          );
+                _playButton(),
+                const CustomButtonWidget(
+                    icon: Icons.info_outline, title: "Info")
+              ],
+            ),
+          ),
+        )
+      ],
+    );
   }
+
   TextButton _playButton() {
     return TextButton.icon(
       onPressed: () {},

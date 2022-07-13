@@ -13,22 +13,22 @@ class DownloadsRepository implements IDownloadsRepo {
   @override
   Future<Either<MainFailure, List<Downloads>>> getDownloadsImages() async {
     try {
-      final Response response = await Dio(BaseOptions()).get(ApiEndPoints.downloads);
-      if (response.statusCode==200||response.statusCode==201) {
-       
-      final downloadsList = (response.data['results'] as List).map((e) {
-        return Downloads.fromJson(e);
-       }).toList();
-       
+      final Response response =
+          await Dio(BaseOptions()).get(ApiEndPoints.downloads);
+      if (response.statusCode == 200 || response.statusCode == 201) {
+        final downloadsList = (response.data['results'] as List).map((e) {
+          return Downloads.fromJson(e);
+        }).toList();
+
         // final List<Downloads> downloadsList =[];
         // log(response.data.toString());
         // for (final raw in response.data) {
         //   downloadsList.add(Downloads.fromJson(raw as Map<String, dynamic>));
         // }
-        print('datas are.....................');
-        print(downloadsList);
-        return  Right(downloadsList);
-      }else{
+       // print('datas are.....................');
+       // print(downloadsList);
+        return Right(downloadsList);
+      } else {
         return const Left(MainFailure.serverFailure());
       }
     } catch (e) {
@@ -36,5 +36,4 @@ class DownloadsRepository implements IDownloadsRepo {
       return const Left(MainFailure.clientFailure());
     }
   }
-  
 }

@@ -14,25 +14,23 @@ class SearchImp implements SearchService {
   Future<Either<MainFailure, SearchResp>> searchMovies(
       {required String movieQuery}) async {
     try {
-      final  response = await Dio(BaseOptions()).get(
+      final response = await Dio(BaseOptions()).get(
         ApiEndPoints.search,
         queryParameters: {
           'query': movieQuery,
         },
       );
-    //  log(response.data.toString());
+      //  log(response.data.toString());
       if (response.statusCode == 200 || response.statusCode == 201) {
         final result = SearchResp.fromJson(response.data);
         return Right(result);
       } else {
         return const Left(MainFailure.serverFailure());
       }
-    }
-    on DioError catch(e){
+    } on DioError catch (e) {
       log(e.toString());
       return const Left(MainFailure.clientFailure());
-    }
-     catch (e) {
+    } catch (e) {
       log(e.toString());
       return const Left(MainFailure.clientFailure());
     }

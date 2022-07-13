@@ -2,8 +2,10 @@ import 'package:flutter/material.dart';
 import 'package:netflixapp/core/colors/colors.dart';
 
 class VideoWidget extends StatelessWidget {
+  final String url;
   const VideoWidget({
     Key? key,
+   required this.url,
   }) : super(key: key);
 
   @override
@@ -13,8 +15,8 @@ class VideoWidget extends StatelessWidget {
         SizedBox(
           width: double.infinity,
           height: 200,
-          child: Image.asset(
-            "asset/image/newandhotTempImage.jpg",
+          child: Image.network(
+            url,
             fit: BoxFit.cover,
           ),
         ),

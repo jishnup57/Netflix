@@ -40,9 +40,9 @@ class SearchIdleWidget extends StatelessWidget {
                   return ListView.separated(
                     shrinkWrap: true,
                     itemBuilder: (ctx, index) {
-                      final movie=state.idleList[index];
+                      final movie = state.idleList[index];
                       return TopSearchItemsTile(
-                        title: movie.title??"No title provided",
+                        title: movie.title ?? "No title provided",
                         imageUrlfromApi: '$imageAppendUrl${movie.posterPath}',
                       );
                     },

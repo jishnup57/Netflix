@@ -24,27 +24,29 @@ class NumberCard extends StatelessWidget {
               height: 200,
               decoration: BoxDecoration(
                 borderRadius: kRadius10,
-                image:const DecorationImage(
-                  image: NetworkImage(
-                      'https://www.themoviedb.org/t/p/w220_and_h330_face/mbsRGqJtdKcVbjQxkrfzKCAkYoU.jpg'),
-                fit: BoxFit.cover),
+                image: const DecorationImage(
+                    image: NetworkImage(
+                        'https://www.themoviedb.org/t/p/w220_and_h330_face/mbsRGqJtdKcVbjQxkrfzKCAkYoU.jpg'),
+                    fit: BoxFit.cover),
               ),
             ),
           ],
         ),
         Positioned(
-        left: 13,
-        bottom: -30,
+          left: 13,
+          bottom: -30,
           child: BorderedText(
             strokeWidth: 10.0,
             strokeColor: colorWhite,
-            child: Text("${index+1}",style: const TextStyle(
-              fontSize: 150,
-              color: kBlackColor,
-              fontWeight: FontWeight.bold,
-              decoration: TextDecoration.none,
-              decorationColor: Colors.black
-            ),),
+            child: Text(
+              "${index + 1}",
+              style: const TextStyle(
+                  fontSize: 150,
+                  color: kBlackColor,
+                  fontWeight: FontWeight.bold,
+                  decoration: TextDecoration.none,
+                  decorationColor: Colors.black),
+            ),
           ),
         )
       ],

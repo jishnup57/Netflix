@@ -206,7 +206,7 @@ class _FastLaughVideoPlayerState extends State<FastLaughVideoPlayer> {
       height: double.infinity,
       child: _videoPlayerController.value.isInitialized
           ? AspectRatio(
-              aspectRatio:16.0/9.0,
+              aspectRatio: 9/16,
               child: VideoPlayer(_videoPlayerController),
             )
           : const Center(

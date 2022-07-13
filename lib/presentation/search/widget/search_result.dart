@@ -3,7 +3,6 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:netflixapp/application/search/search_bloc.dart';
 import 'package:netflixapp/core/constants.dart';
 import 'package:netflixapp/presentation/search/widget/title.dart';
-
 //const imgurl= 'https://www.themoviedb.org/t/p/w220_and_h330_face/qJRB789ceLryrLvOKrZqLKr2CGf.jpg';
 class SearchResultWidget extends StatelessWidget {
   const SearchResultWidget({Key? key}) : super(key: key);
@@ -24,10 +23,11 @@ class SearchResultWidget extends StatelessWidget {
                 childAspectRatio: 1 / 1.4,
                 mainAxisSpacing: 5,
                 crossAxisSpacing: 5,
-                children: List.generate(20, (index) {
-                  final movie=state.searchResultList[index];
-
-                  return  MainCard(imageUrl: movie.posterImageUrl,);
+                children: List.generate(state.searchResultList!.length, (index) {
+                  final movie = state.searchResultList![index];
+                  return MainCard(
+                    imageUrl: movie.posterImageUrl,
+                  );
                 }),
               );
             },

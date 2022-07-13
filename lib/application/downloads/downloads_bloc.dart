@@ -18,10 +18,7 @@ part 'downloads_bloc.freezed.dart';
 class DownloadsBloc extends Bloc<DownloadsEvent, DownloadsState> {
   final IDownloadsRepo _downloadsRepo;
 
-
   DownloadsBloc(this._downloadsRepo) : super(DownloadsState.inital()) {
-
-
     on<_GetDownloadsImage>((event, emit) async {
       emit(
         state.copyWith(
@@ -35,14 +32,14 @@ class DownloadsBloc extends Bloc<DownloadsEvent, DownloadsState> {
       log(downloadsOption.toString());
       emit(downloadsOption.fold(
           (failure) => state.copyWith(
-                isLoading: false,
-                downloadsaFaliureOrSuccessOption: some(
-                  Left(failure),
-                )
-              ),
-          (success) => state.copyWith(isLoading: false,
-          downloads: success,
-          downloadsaFaliureOrSuccessOption: Some(Right(success)))));
+              isLoading: false,
+              downloadsaFaliureOrSuccessOption: some(
+                Left(failure),
+              )),
+          (success) => state.copyWith(
+              isLoading: false,
+              downloads: success,
+              downloadsaFaliureOrSuccessOption: Some(Right(success)))));
     });
   }
 }

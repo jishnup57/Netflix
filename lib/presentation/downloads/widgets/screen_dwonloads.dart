@@ -44,9 +44,10 @@ class Section2 extends StatelessWidget {
   // ];
   @override
   Widget build(BuildContext context) {
-     WidgetsBinding.instance!.addPostFrameCallback((_) {
-       BlocProvider.of<DownloadsBloc>(context).add(const DownloadsEvent.getDownloadsImage());
-     });
+    WidgetsBinding.instance!.addPostFrameCallback((_) {
+      BlocProvider.of<DownloadsBloc>(context)
+          .add(const DownloadsEvent.getDownloadsImage());
+    });
     // BlocProvider.of<DownloadsBloc>(context)
     //     .add(const DownloadsEvent.getDownloadsImage());
     final Size size = MediaQuery.of(context).size;
@@ -66,40 +67,43 @@ class Section2 extends StatelessWidget {
         ),
         BlocBuilder<DownloadsBloc, DownloadsState>(
           builder: (context, state) {
-          return 
-             SizedBox(
+            return SizedBox(
               width: size.width,
               height: size.height * 0.5,
-              child: state.isLoading?const Center(child:  CircularProgressIndicator()):
-               Stack(alignment: Alignment.center, children: [
-                Center(
-                  child: CircleAvatar(
-                    radius: size.width * 0.4,
-                    backgroundColor: Colors.grey.withOpacity(.5),
-                  ),
-                ),
-                DownloadsImageWidget(
-                  imageurl:'https://image.tmdb.org/t/p/w500${state.downloads?[2].posterPath}',
-                  margin: const EdgeInsets.only(left: 170, top: 50),
-                  angle: 25,
-                  width: size.width * 0.35,
-                  height: size.width * 0.55,
-                ),
-                DownloadsImageWidget(
-                  imageurl: 'https://image.tmdb.org/t/p/w500${state.downloads?[1].posterPath}',
-                  margin: const EdgeInsets.only(right: 170, top: 50),
-                  angle: -25,
-                  width: size.width * 0.35,
-                  height: size.width * 0.55,
-                ),
-                DownloadsImageWidget(
-                  imageurl: 'https://image.tmdb.org/t/p/w500${state.downloads?[0].posterPath}',
-                  margin: const EdgeInsets.only(bottom: 25, top: 50),
-                  width: size.width * 0.4,
-                  height: size.width * 0.65,
-                  radius: 8,
-                ),
-              ]),
+              child: state.isLoading
+                  ? const Center(child: CircularProgressIndicator())
+                  : Stack(alignment: Alignment.center, children: [
+                      Center(
+                        child: CircleAvatar(
+                          radius: size.width * 0.4,
+                          backgroundColor: Colors.grey.withOpacity(.5),
+                        ),
+                      ),
+                      DownloadsImageWidget(
+                        imageurl:
+                            'https://image.tmdb.org/t/p/w500${state.downloads?[2].posterPath}',
+                        margin: const EdgeInsets.only(left: 170, top: 50),
+                        angle: 25,
+                        width: size.width * 0.35,
+                        height: size.width * 0.55,
+                      ),
+                      DownloadsImageWidget(
+                        imageurl:
+                            'https://image.tmdb.org/t/p/w500${state.downloads?[1].posterPath}',
+                        margin: const EdgeInsets.only(right: 170, top: 50),
+                        angle: -25,
+                        width: size.width * 0.35,
+                        height: size.width * 0.55,
+                      ),
+                      DownloadsImageWidget(
+                        imageurl:
+                            'https://image.tmdb.org/t/p/w500${state.downloads?[0].posterPath}',
+                        margin: const EdgeInsets.only(bottom: 25, top: 50),
+                        width: size.width * 0.4,
+                        height: size.width * 0.65,
+                        radius: 8,
+                      ),
+                    ]),
             );
           },
         ),

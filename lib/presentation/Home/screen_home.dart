@@ -16,7 +16,8 @@ class ScreenHome extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-     BlocProvider.of<DownloadsBloc>(context).add(const DownloadsEvent.getDownloadsImage());
+    BlocProvider.of<DownloadsBloc>(context)
+        .add(const DownloadsEvent.getDownloadsImage());
     return Scaffold(
         body: ValueListenableBuilder(
       valueListenable: scrollNotifier,
@@ -59,7 +60,7 @@ class ScreenHome extends StatelessWidget {
               ),
               scrollNotifier.value == true
                   ? AnimatedContainer(
-                    duration: const Duration(milliseconds: 1000),
+                      duration: const Duration(milliseconds: 1000),
                       width: double.infinity,
                       height: 90,
                       color: Colors.black.withOpacity(0.3),
@@ -90,12 +91,21 @@ class ScreenHome extends StatelessWidget {
                           Row(
                             mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                             children: [
-                             const Text("TV shows",style:kHomeTextstyle,),
-                             const Text("Movies",style:kHomeTextstyle),
+                              const Text(
+                                "TV shows",
+                                style: kHomeTextstyle,
+                              ),
+                              const Text("Movies", style: kHomeTextstyle),
                               Row(
-                                children:const [
-                                  Text("Categories",style:kHomeTextstyle,),
-                                  Icon(Icons.arrow_drop_down,color: colorWhite,)
+                                children: const [
+                                  Text(
+                                    "Categories",
+                                    style: kHomeTextstyle,
+                                  ),
+                                  Icon(
+                                    Icons.arrow_drop_down,
+                                    color: colorWhite,
+                                  )
                                 ],
                               )
                             ],

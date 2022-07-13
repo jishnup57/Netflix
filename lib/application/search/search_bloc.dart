@@ -34,11 +34,11 @@ idle state
         return;
       }
       emit(const SearchState(
-          searchResultList: [],
-          idleList: [],
-          isLoading: true,
-          isError: false,
-        ));
+        searchResultList: [],
+        idleList: [],
+        isLoading: true,
+        isError: false,
+      ));
 
       //get trending
       final _result = await _downloadService.getDownloadsImages();
@@ -79,7 +79,7 @@ search result state
           await _searchService.searchMovies(movieQuery: event.movieQuery);
       final _state = _result.fold(
         (MainFailure f) {
-           return const SearchState(
+          return const SearchState(
             searchResultList: [],
             idleList: [],
             isLoading: false,
@@ -87,9 +87,9 @@ search result state
           );
         },
         (SearchResp r) {
-          return const SearchState(
-             searchResultList: [],
-            // searchResultList: r.results,
+          return   SearchState(
+           // searchResultList: [],
+            searchResultList: r.results,
             idleList: [],
             isLoading: false,
             isError: false,

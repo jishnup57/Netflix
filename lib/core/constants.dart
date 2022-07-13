@@ -18,5 +18,4 @@ const kMainImage =
 const TextStyle kHomeTextstyle =
     TextStyle(fontSize: 14, fontWeight: FontWeight.bold);
 
-
-const imageAppendUrl='https://image.tmdb.org/t/p/w500';
+const imageAppendUrl = 'https://image.tmdb.org/t/p/w500';
