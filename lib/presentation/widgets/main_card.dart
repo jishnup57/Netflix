@@ -1,9 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:netflixapp/core/constants.dart';
 
+import '../../domain/downloads/models/downloads.dart';
+
 class MainCardHome extends StatelessWidget {
+  final Downloads data;
   const MainCardHome({
     Key? key,
+   required this.data,
   }) : super(key: key);
 
   @override
@@ -14,9 +18,9 @@ class MainCardHome extends StatelessWidget {
       height: 250,
       decoration: BoxDecoration(
         borderRadius: kRadius10,
-        image: const DecorationImage(
+        image:  DecorationImage(
             image: NetworkImage(
-                'https://www.themoviedb.org/t/p/w220_and_h330_face/74kkM7E5IymHl7ZS4XugP6YT3zU.jpg'),
+                'https://image.tmdb.org/t/p/w500${data.posterPath}'),
             fit: BoxFit.cover),
       ),
     );

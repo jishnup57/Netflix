@@ -21,11 +21,11 @@ Map<String, dynamic> _$SearchRespToJson(SearchResp instance) =>
 SearchResultData _$SearchResultDataFromJson(Map<String, dynamic> json) =>
     SearchResultData(
       originalTitle: json['original_title'] as String?,
-      posterPath: json['poster_path'] as String?,
+      posterPath: json['backdrop_path'] as String?,
     );
 
 Map<String, dynamic> _$SearchResultDataToJson(SearchResultData instance) =>
     <String, dynamic>{
       'original_title': instance.originalTitle,
-      'poster_path': instance.posterPath,
+      'backdrop_path': instance.posterPath,
     };

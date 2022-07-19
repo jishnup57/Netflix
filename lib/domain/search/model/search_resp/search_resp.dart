@@ -23,7 +23,7 @@ class SearchResultData {
   @JsonKey(name: 'original_title')
   String? originalTitle;
 
-  @JsonKey(name: 'poster_path')
+  @JsonKey(name: 'backdrop_path')
   String? posterPath;
 
   String get posterImageUrl => '$imageAppendUrl$posterPath';

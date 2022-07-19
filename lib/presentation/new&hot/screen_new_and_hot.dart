@@ -123,8 +123,8 @@ class ComingSoonList extends StatelessWidget {
               }
               final _date = DateTime.parse(movie.releaseDate!);
 
-             final formatedDate= DateFormat.MMMd('en_US').format(_date);
-              print(formatedDate);
+              final formatedDate = DateFormat.MMMd('en_US').format(_date);
+
               return ComingSoon(
                 id: movie.id.toString(),
                 month: formatedDate.split(' ').first.toUpperCase(),
